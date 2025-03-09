@@ -41,7 +41,20 @@ static char _log_tag(usbbluetooth_log_level_t l)
  */
 static enum libusb_log_level _log_level_to_libusb(usbbluetooth_log_level_t l)
 {
-    return l;  /* 現在は同じ値を使用 */
+    switch (l) {
+        case USBBLUETOOTH_LOG_NONE:
+            return LIBUSB_LOG_LEVEL_NONE;
+        case USBBLUETOOTH_LOG_ERROR:
+            return LIBUSB_LOG_LEVEL_ERROR;
+        case USBBLUETOOTH_LOG_WARN:
+            return LIBUSB_LOG_LEVEL_WARNING;
+        case USBBLUETOOTH_LOG_INFO:
+            return LIBUSB_LOG_LEVEL_INFO;
+        case USBBLUETOOTH_LOG_DEBUG:
+            return LIBUSB_LOG_LEVEL_DEBUG;
+        default:
+            return LIBUSB_LOG_LEVEL_NONE;
+    }
 }
 
 /**
